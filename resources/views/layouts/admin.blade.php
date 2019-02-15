@@ -18,8 +18,8 @@
 
     <div class="navbar-collapse collapse">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-envelope"></i> 5</a></li>
-            <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-bell"></i> 3</a></li>
+            {{--  <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-envelope"></i> 5</a></li>
+            <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-bell"></i> 3</a></li>  --}}
             <li class="nav-item dropdown">
                 <a href="#" id="dd_user" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Gifuto</a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd_user">
@@ -35,23 +35,13 @@
     <div class="sidebar sidebar-dark bg-dark">
         <ul class="list-unstyled">
             <li><a href="/admin"><i class="fa fa-fw fa-link"></i> Home</a></li>
-            <li>
-                <a href="#sm_expand_1" data-toggle="collapse">
-                    <i class="fa fa-fw fa-link"></i> Expandable Menu Item
-                </a>
-                <ul id="sm_expand_1" class="list-unstyled collapse">
-                    <li><a href="#">Submenu Item</a></li>
-                    <li><a href="#">Submenu Item</a></li>
-                </ul>
-            </li>
-            <li><a href="/admin/seller"><i class="fa fa-fw fa-link"></i> Status Seller</a></li>
-            <li><a href="#"><i class="fa fa-fw fa-link"></i> Menu Item</a></li>
-            <li><a href="#"><i class="fa fa-fw fa-link"></i> Menu Item</a></li>
+            <li><a href="/admin/status-seller"><i class="fa fa-fw fa-link"></i> Status Seller</a></li>
+            <li><a href="/admin/pembelian"><i class="fa fa-fw fa-link"></i> transaksi</a></li>
         </ul>
     </div>
 
     <div class="content p-4">
-        @yield('content');
+        @yield('content')
     </div>
 </div>
 
