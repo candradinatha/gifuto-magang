@@ -87,4 +87,7 @@ Route::group(['prefix' => 'seller'], function () {
     });
 });
 Route::get('/admin','AdminGifutoController@index');
-Route::get('admin/seller','AdminGifutoController@status_seller');
+Route::get('admin/seller/{id}','AdminGifutoController@status_seller');
+Route::get('admin/transaksi','AdminGifutoController@transaksi');
+Route::put('admin/filter','AdminGifutoController@filtertransaksi');
+

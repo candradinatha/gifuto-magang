@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/fontawesome-all.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/bootadmin.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/datatables.min.css')}}">
+    
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('js/bootadmin.min.js')}}"></script>
+    <script src="{{asset('js/datatables.min.js')}}"></script>
+
 
     <title>BootAdmin</title>
 </head>
@@ -35,29 +42,16 @@
     <div class="sidebar sidebar-dark bg-dark">
         <ul class="list-unstyled">
             <li><a href="/admin"><i class="fa fa-fw fa-link"></i> Home</a></li>
-            <li>
-                <a href="#sm_expand_1" data-toggle="collapse">
-                    <i class="fa fa-fw fa-link"></i> Expandable Menu Item
-                </a>
-                <ul id="sm_expand_1" class="list-unstyled collapse">
-                    <li><a href="#">Submenu Item</a></li>
-                    <li><a href="#">Submenu Item</a></li>
-                </ul>
-            </li>
             <li><a href="/admin/seller"><i class="fa fa-fw fa-link"></i> Status Seller</a></li>
-            <li><a href="#"><i class="fa fa-fw fa-link"></i> Menu Item</a></li>
-            <li><a href="#"><i class="fa fa-fw fa-link"></i> Menu Item</a></li>
+            <li><a href="/admin/transaksi"><i class="fa fa-fw fa-link"></i> Transaksi</a></li>
         </ul>
     </div>
 
     <div class="content p-4">
-        @yield('content');
+        @yield('content')
     </div>
 </div>
 
-<script src="{{asset('js/jquery.min.js')}}"></script>
-<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('js/bootadmin.min.js')}}"></script>
 
 </body>
 </html>
