@@ -90,6 +90,6 @@ Route::group(['prefix' => 'seller'], function () {
 Route::get('/admin','AdminGifutoController@index')->name('admin.index');
 Route::get('admin/status-seller','AdminGifutoController@status_seller')->name('admin.status_seller');
 Route::get('admin/status-seller/edit/{id}','AdminGifutoController@edit')->name('admin.edit');
-Route::get('admin/transaksi','AdminGifutoController@pembelian')->name('admin.transaksi');
+Route::get('admin/transaksi','AdminGifutoController@transaksi')->name('admin.transaksi');
 
 Route::put('admin/status-seller/{id}','AdminGifutoController@update')->name('admin.update-status');

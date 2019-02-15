@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/fontawesome-all.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/bootadmin.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/datatables.min.css')}}">
+    
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('js/bootadmin.min.js')}}"></script>
+    <script src="{{asset('js/datatables.min.js')}}"></script>
+
 
     <title>BootAdmin</title>
 </head>
@@ -36,7 +43,7 @@
         <ul class="list-unstyled">
             <li><a href="/admin"><i class="fa fa-fw fa-link"></i> Home</a></li>
             <li><a href="/admin/status-seller"><i class="fa fa-fw fa-link"></i> Status Seller</a></li>
-            <li><a href="/admin/pembelian"><i class="fa fa-fw fa-link"></i> transaksi</a></li>
+            <li><a href="/admin/transaksi"><i class="fa fa-fw fa-link"></i> transaksi</a></li>
         </ul>
     </div>
 
@@ -45,9 +52,6 @@
     </div>
 </div>
 
-<script src="{{asset('js/jquery.min.js')}}"></script>
-<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('js/bootadmin.min.js')}}"></script>
 
 </body>
 </html>
