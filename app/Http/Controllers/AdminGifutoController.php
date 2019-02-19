@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\seller;
 use App\transaksi;
-use App\status_pembayaran;
 use App\detail_transaksi;
 
 class AdminGifutoController extends Controller
@@ -51,10 +51,22 @@ class AdminGifutoController extends Controller
     
     public function transaksi()
     {
-        $transaksi = transaksi::all();
-        $detail = detail_transaksi::all();
-        $pembayaran = status_pembayaran::all();
-        return view('admin.transaksi')->with(compact('transaksi','peembayaran'));
+        //$transaksi = transaksi::all();
+        $details = DB::table('detail_transaksis')
+        ->join('transaksis', 'detail_transaksis.id_transaksi', '=', 'transaksis.id')
+        ->join('kados', 'detail_transaksis.id_kado', '=', 'kados.id')
+        ->select('detail_transaksis.jumlah_brg',
+                 'detail_transaksis.catatan_penjual',
+                 'detail_transaksis.id_transaksi',
+                 'transaksis.total_belanja',
+                 'transaksis.tanggal_transaksi',
+                 'transaksis.batas_transaksi',
+                 'transaksis.status',
+                 'transaksis.id',
+                 'kados.nama_kado',
+                 'kados.harga_kado')
+        ->get();
+        return view('admin.transaksi')->with('details',$details);
     }
     
 }

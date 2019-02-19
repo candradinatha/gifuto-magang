@@ -5,12 +5,12 @@
             <div class="d-flex border">
                 <div class="bg-primary text-light p-4">
                     <div class="d-flex align-items-center h-100">
-                        <i class="fa fa-3x fa-fw fa-cog"></i>
+                        <i class="fa fa-3x fa-fw fa-tasks"></i>
                     </div>
                 </div>
                 <div class="flex-grow-1 bg-white p-4">
-                    <p class="text-uppercase text-secondary mb-0">Usage</p>
-                    <h3 class="font-weight-bold mb-0">10%</h3>
+                    <p class="text-uppercase text-secondary mb-0">Unverified</p>
+                    <h3 class="font-weight-bold mb-0">{{$details->where('status','unverified')->count()}}</h3>
                 </div>
             </div>
         </div>
@@ -22,8 +22,8 @@
                     </div>
                 </div>
                 <div class="flex-grow-1 bg-white p-4">
-                    <p class="text-uppercase text-secondary mb-0">Tickets</p>
-                    <h3 class="font-weight-bold mb-0">374</h3>
+                    <p class="text-uppercase text-secondary mb-0">Success</p>
+                    <h3 class="font-weight-bold mb-0">{{$details->where('status','success')->count()}}</h3>
                 </div>
             </div>
         </div>
@@ -31,12 +31,12 @@
             <div class="d-flex border">
                 <div class="bg-danger text-light p-4">
                     <div class="d-flex align-items-center h-100">
-                        <i class="fa fa-3x fa-fw fa-shopping-cart"></i>
+                        <i class="fa fa-3x fa-fw fa-ban"></i>
                     </div>
                 </div>
                 <div class="flex-grow-1 bg-white p-4">
-                    <p class="text-uppercase text-secondary mb-0">Sales</p>
-                    <h3 class="font-weight-bold mb-0">73,829</h3>
+                    <p class="text-uppercase text-secondary mb-0">Cancelled</p>
+                    <h3 class="font-weight-bold mb-0">{{$details->where('status','cancelled')->count()}}</h3>
                 </div>
             </div>
         </div>
@@ -44,12 +44,12 @@
             <div class="d-flex border">
                 <div class="bg-info text-light p-4">
                     <div class="d-flex align-items-center h-100">
-                        <i class="fa fa-3x fa-fw fa-users"></i>
+                        <i class="fa fa-3x fa-fw fa-exclamation-triangle "></i>
                     </div>
                 </div>
                 <div class="flex-grow-1 bg-white p-4">
-                    <p class="text-uppercase text-secondary mb-0">Customers</p>
-                    <h3 class="font-weight-bold mb-0">1,683</h3>
+                    <p class="text-uppercase text-secondary mb-0">Expired</p>
+                    <h3 class="font-weight-bold mb-0">{{$details->where('status','expired')->count()}}</h3>
                 </div>
             </div>
         </div>
@@ -66,12 +66,27 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($transaksi as $penjualan)
+                @foreach ($details as $id => $detail)
                     <tr>
-                        <td>{{$penjualan->tanggal_transaksi}}</td>
-                        <td>{{$penjualan->batas_transaksi}}</td>
-                        <td>{{$penjualan->status}}</td>
+                        <td data-toggle="modal" data-target="#myModal-{{$id}}">{{$detail->tanggal_transaksi}}</td>
+                        <td data-toggle="modal" data-target="#myModal-{{$id}}">{{$detail->batas_transaksi}}</td>
+                        <td data-toggle="modal" data-target="#myModal-{{$id}}">{{$detail->status}}</td>
                     </tr>
+                    <div id="myModal-{{$id}}" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <p>
+                                    <b>Kado: </b>{{$detail->nama_kado}}<br>
+                                    <b>Catatan Penjual: </b>{{$detail->catatan_penjual}}
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
             </tbody>
         </table>
