@@ -7,13 +7,14 @@ use Illuminate\Support\Facades\DB;
 use App\seller;
 use App\transaksi;
 use App\detail_transaksi;
+use Carbon\Carbon;
 
 class AdminGifutoController extends Controller
 {
     public function index()
     {
         $seller = seller::all();
-        $bulan = '02';
+        $bulan = Carbon::now()->month;
         $transaksi = transaksi::whereMonth('tanggal_transaksi',$bulan)->get();
 
         return view('admin.home')->with(compact('seller', 'transaksi'));
@@ -49,24 +50,27 @@ class AdminGifutoController extends Controller
         return redirect('/admin/status-seller');
     }
     
+    
     public function transaksi()
     {
-        //$transaksi = transaksi::all();
-        $details = DB::table('detail_transaksis')
-        ->join('transaksis', 'detail_transaksis.id_transaksi', '=', 'transaksis.id')
-        ->join('kados', 'detail_transaksis.id_kado', '=', 'kados.id')
-        ->select('detail_transaksis.jumlah_brg',
-                 'detail_transaksis.catatan_penjual',
-                 'detail_transaksis.id_transaksi',
-                 'transaksis.total_belanja',
-                 'transaksis.tanggal_transaksi',
-                 'transaksis.batas_transaksi',
-                 'transaksis.status',
-                 'transaksis.id',
-                 'kados.nama_kado',
-                 'kados.harga_kado')
-        ->get();
-        return view('admin.transaksi')->with('details',$details);
+        $transaksis = transaksi::all();
+        //$details = detail_transaksi::all();
+        // $details = DB::table('transaksis')
+        // ->join('detail_transaksis', 'transaksis.id', '=', 'detail_transaksis.id_transaksi')
+        // ->join('kados', 'detail_transaksis.id_kado', '=', 'kados.id')
+        // ->select('detail_transaksis.jumlah_brg',
+        //          'detail_transaksis.catatan_penjual',
+        //          'detail_transaksis.id_transaksi',
+        //          'transaksis.total_belanja',
+        //          'transaksis.tanggal_transaksi',
+        //          'transaksis.batas_transaksi',
+        //          'transaksis.status',
+        //          'transaksis.id',
+        //          'kados.nama_kado',
+        //          'kados.harga_kado')
+        // ->get();
+        return view('admin.transaksi')->with('transaksis',$transaksis);
+        //return view('admin.transaksi')->with(compact('details','transaksis'));
+        
     }
-    
 }

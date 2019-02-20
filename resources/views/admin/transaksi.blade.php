@@ -10,7 +10,7 @@
                 </div>
                 <div class="flex-grow-1 bg-white p-4">
                     <p class="text-uppercase text-secondary mb-0">Unverified</p>
-                    <h3 class="font-weight-bold mb-0">{{$details->where('status','unverified')->count()}}</h3>
+                    <h3 class="font-weight-bold mb-0">{{$transaksis->where('status','unverified')->count()}}</h3>
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
                 </div>
                 <div class="flex-grow-1 bg-white p-4">
                     <p class="text-uppercase text-secondary mb-0">Success</p>
-                    <h3 class="font-weight-bold mb-0">{{$details->where('status','success')->count()}}</h3>
+                    <h3 class="font-weight-bold mb-0">{{$transaksis->where('status','success')->count()}}</h3>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="flex-grow-1 bg-white p-4">
                     <p class="text-uppercase text-secondary mb-0">Cancelled</p>
-                    <h3 class="font-weight-bold mb-0">{{$details->where('status','cancelled')->count()}}</h3>
+                    <h3 class="font-weight-bold mb-0">{{$transaksis->where('status','cancelled')->count()}}</h3>
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
                 </div>
                 <div class="flex-grow-1 bg-white p-4">
                     <p class="text-uppercase text-secondary mb-0">Expired</p>
-                    <h3 class="font-weight-bold mb-0">{{$details->where('status','expired')->count()}}</h3>
+                    <h3 class="font-weight-bold mb-0">{{$transaksis->where('status','expired')->count()}}</h3>
                 </div>
             </div>
         </div>
@@ -66,23 +66,20 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($details as $id => $detail)
+                @foreach ($transaksis as $id => $transaksi)
                     <tr>
-                        <td data-toggle="modal" data-target="#myModal-{{$id}}">{{$detail->tanggal_transaksi}}</td>
-                        <td data-toggle="modal" data-target="#myModal-{{$id}}">{{$detail->batas_transaksi}}</td>
-                        <td data-toggle="modal" data-target="#myModal-{{$id}}">{{$detail->status}}</td>
+                        <td data-toggle="modal" data-target="#myModal-{{$id}}">{{$transaksi->tanggal_transaksi}}</td>
+                        <td data-toggle="modal" data-target="#myModal-{{$id}}">{{$transaksi->batas_transaksi}}</td>
+                        <td data-toggle="modal" data-target="#myModal-{{$id}}">{{$transaksi->status}}</td>
                     </tr>
                     <div id="myModal-{{$id}}" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-body">
-                                    <p>
-                                    <b>Kado: </b>{{$detail->nama_kado}}<br>
-                                    <b>Catatan Penjual: </b>{{$detail->catatan_penjual}}
-                                    </p>
+                                    {{$transaksi->details}}
                                 </div>
                                 <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>    
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>    
                                 </div>
                             </div>
                         </div>
