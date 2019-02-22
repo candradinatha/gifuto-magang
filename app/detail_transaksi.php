@@ -10,4 +10,5 @@ class detail_transaksi extends Model
     {
         return $this->belongsTo('App\transaksi'); 
     }
+    
 }

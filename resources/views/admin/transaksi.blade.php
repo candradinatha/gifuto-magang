@@ -76,7 +76,26 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-body">
-                                    {{$transaksi->details}}
+                                    <b>ID Transaksi:</b>
+                                    @foreach ($transaksi->details as $detail)
+                                        {{$detail->id_transaksi}}@if(!$loop->last), @endif
+                                    @endforeach
+                                    <br><b>ID Kado:</b>
+                                    @foreach ($transaksi->details as $detail)
+                                        {{$detail->id_kado}}@if(!$loop->last), @endif
+                                    @endforeach
+                                    <br><b>Jumlah Barang:</b>
+                                    @foreach ($transaksi->details as $detail)
+                                        {{$detail->jumlah_brg}}@if(!$loop->last), @endif
+                                    @endforeach
+                                    <br><b>ID Seller:</b>
+                                    @foreach ($transaksi->details as $detail)
+                                        {{$detail->id_seller}}@if(!$loop->last), @endif
+                                    @endforeach
+                                    <br><b>Catatan Penjual:</b>
+                                    @foreach ($transaksi->details as $detail)
+                                        {{$detail->catatan_penjual}}@if(!$loop->last), @endif
+                                    @endforeach
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>    
