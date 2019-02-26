@@ -38,9 +38,9 @@
             <table id="example" class="table table-hover" cellspacing="0" width="100%">
                 <thead>
                     <tr role="row">
-                        <th>Nama-Toko</th>
-                        <th>Nama-Pemilik</th>
-                        <th>Status-Seller</th>
+                        <th>Nama Toko</th>
+                        <th>Nama Pemilik</th>
+                        <th>Status Seller</th>
                         <th>Action</th>
                     </tr>
                 </thead>
