@@ -76,13 +76,13 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-body">
-                                    <b>ID Transaksi:</b>
+                                    <!-- <b>ID Transaksi:</b>
                                     @foreach ($transaksi->details as $detail)
                                         {{$detail->id_transaksi}}@if(!$loop->last), @endif
                                     @endforeach
                                     <br><b>ID Kado:</b>
                                     @foreach ($transaksi->details as $detail)
-                                        {{$detail->id_kado}}@if(!$loop->last), @endif
+                                        {{$detail->id}}@if(!$loop->last), @endif
                                     @endforeach
                                     <br><b>Jumlah Barang:</b>
                                     @foreach ($transaksi->details as $detail)
@@ -96,6 +96,54 @@
                                     @foreach ($transaksi->details as $detail)
                                         {{$detail->catatan_penjual}}@if(!$loop->last), @endif
                                     @endforeach
+                                    <br><b>Tanggal Transaksi:</b>
+                                    {{$transaksi->tanggal_transaksi}}
+                                    <br><b>Batas Transaksi:</b>
+                                    {{$transaksi->batas_transaksi}}
+                                    <br><b>Status Transaksi:</b>
+                                    {{$transaksi->status}} -->
+                                    <div class="row">
+                                        <div class="col-md-4">   
+                                            <b allign="right">ID Transaksi
+                                            <br>ID Kado
+                                            <br>Jumlah Barang
+                                            <br>ID Seller
+                                            <br>Catatan Penjual
+                                            <br>Tanggal Transaksi
+                                            <br>Batas Transaksi
+                                            <br>Status Transaksi</b>
+                                        </div>
+                                        <div class="col-sm-0">   
+                                            <b allign="right">:
+                                            <br>:
+                                            <br>:
+                                            <br>:
+                                            <br>:
+                                            <br>:
+                                            <br>:
+                                            <br>:</b>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            @foreach ($transaksi->details as $detail)
+                                                {{$detail->id_transaksi}}@if(!$loop->last), @endif
+                                            @endforeach<br>
+                                            @foreach ($transaksi->details as $detail)
+                                                {{$detail->id}}@if(!$loop->last), @endif
+                                            @endforeach<br>
+                                            @foreach ($transaksi->details as $detail)
+                                                {{$detail->jumlah_brg}}@if(!$loop->last), @endif
+                                            @endforeach<br>
+                                            @foreach ($transaksi->details as $detail)
+                                                {{$detail->id_seller}}@if(!$loop->last), @endif
+                                            @endforeach<br>
+                                            @foreach ($transaksi->details as $detail)
+                                                {{$detail->catatan_penjual}}@if(!$loop->last), @endif
+                                            @endforeach<br>
+                                            {{$transaksi->tanggal_transaksi}}<br>
+                                            {{$transaksi->batas_transaksi}}<br>
+                                            {{$transaksi->status}}<br>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>    

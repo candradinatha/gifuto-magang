@@ -11,4 +11,9 @@ class detail_transaksi extends Model
         return $this->belongsTo('App\transaksi'); 
     }
     
+    public function kado()
+    {
+        return $this->belongsTo('App\kado'); 
+    }
+    
 }

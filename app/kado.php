@@ -30,5 +30,9 @@ class kado extends Model
     public function all_relation(){
         return $this->foto_barang->merge($this->kategori_kado);
     }
-
+    
+    public function details()
+    {
+        return $this->hasMany('App\detail_transaksi','id_kado'); 
+    }
 }
