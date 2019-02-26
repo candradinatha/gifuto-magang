@@ -56,7 +56,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach ($seller as $sell)
+                @foreach ($seller as $id =>$sell)
                     <tr >
                         <td>
                             <ul class="list-group">
@@ -84,11 +84,11 @@
                                 <li class="list-group-item">
                                     @if ($sell->status_seller==='aktif')
                                       
-                                    <button type="button"  class="btn btn-danger" data-toggle="modal" data-target="#myModal">Non-Aktifkan</button>
+                                    <button type="button"  class="btn btn-danger" data-toggle="modal" data-target="#myModal-{{$id}}">Non-Aktifkan</button>
                                     
                                     @elseif ($sell->status_seller==='tidak_aktif')
                                     
-                                    <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#myModal">Aktifkan</button>
+                                    <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#myModal-{{$id}}">Aktifkan</button>
                                     @endif
                                     
                                 </li>
@@ -98,7 +98,7 @@
                     <form action="{{route('admin.update-status',$sell->id)}}" method="POST">
                 @csrf
                 @method('put')
-                    <div id="myModal" class="modal fade" role="dialog">
+                    <div id="myModal-{{$id}}" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-body">
