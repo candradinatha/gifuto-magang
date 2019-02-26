@@ -93,6 +93,5 @@
         $('#contoh').DataTable();
     });
 </script>
-
 @endsection
 

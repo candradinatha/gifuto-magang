@@ -49,7 +49,35 @@ class AdminGifutoController extends Controller
 
         return redirect('/admin/status-seller');
     }
-    
+    public function status(Request $request,$id)
+    {   
+        $simpan = transaksi::find($id);
+        $tanggal = Carbon::now();
+        $simpan->timestamps = false;
+        if($simpan->status==='unverified')
+        {
+            $simpan->status = 'success';
+        }
+        // else
+        // {
+        //     $simpan->status = '';
+        // }
+        $simpan->save();
+
+        return redirect('/admin/transaksi');
+    }
+    // public function expired(Request $request,$id)
+    // {   
+    //     $simpan = transaksi::find($id);
+    //     if($simpan->status==='unverified')
+    //     {
+    //         $simpan->status = 'expired';
+    //     }
+    //     $simpan->timestamps = false;
+    //     $simpan->save();
+
+    //     return redirect('/admin/transaksi');
+    // }
     
     public function transaksi()
     {
