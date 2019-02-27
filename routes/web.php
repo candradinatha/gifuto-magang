@@ -91,6 +91,7 @@ Route::get('/admin','AdminGifutoController@index')->name('admin.index');
 Route::get('admin/status-seller','AdminGifutoController@status_seller')->name('admin.status_seller');
 Route::get('admin/status-seller/edit/{id}','AdminGifutoController@edit')->name('admin.edit');
 Route::get('admin/transaksi','AdminGifutoController@transaksi')->name('admin.transaksi');
+Route::get('admin/transaksi/detail/{id}','AdminGifutoController@detail')->name('admin.detail');
 
 Route::put('admin/status-seller/{id}','AdminGifutoController@update')->name('admin.update-status');
 Route::put('admin/transaksi/{id}','AdminGifutoController@status')->name('admin.update-seller');
