@@ -109,6 +109,15 @@
         </table>
     </div>  
 </div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h4>Bukti Transfer:</h4><br>
+        <div style="display: flex; justify-content: center;">
+            <img src="{{ asset('images/bukti/' . $transaksis->bukti_transaksi) }}" align="middle" />
+        </div>
+    </div>  
+</div>
 <!-- <script>
     $(document).ready(function () {
         $('#example').DataTable();
