@@ -11,7 +11,7 @@
             </div>
             <div class="flex-grow-1 bg-white p-4">
                 <p class="text-uppercase text-secondary mb-0">Seller Aktif</p>
-                <h3 class="font-weight-bold mb-0">{{$jumlah->where('status_seller','aktif')->count()}}</h3>
+                <h3 class="font-weight-bold mb-0">{{$seller->where('status_seller','aktif')->count()}}</h3>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
             </div>
             <div class="flex-grow-1 bg-white p-4">
                 <p class="text-uppercase text-secondary mb-0">Seller Tidak Aktif</p>
-                <h3 class="font-weight-bold mb-0">{{$jumlah->where('status_seller','tidak_aktif')->count()}}</h3>
+                <h3 class="font-weight-bold mb-0">{{$seller->where('status_seller','tidak_aktif')->count()}}</h3>
             </div>
         </div>
     </div>
