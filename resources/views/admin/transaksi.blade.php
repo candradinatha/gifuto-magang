@@ -1,5 +1,10 @@
 @extends('layouts.admin')
 @section('content')
+<style>
+    table tr{
+        cursor: pointer;
+    }
+</style>
 <div class="row mb-4">
     <div class="col-md">
         <div class="d-flex border">
@@ -93,44 +98,26 @@
                     <th>Tanggal Transaksi</th>
                     <th>Batas Transaksi</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <!-- <th>Action</th> -->
                 </tr>
             </thead>
             <tbody>
                 @foreach ($transaksis as $id => $transaksi)
-                    <tr>
-                        <td data-toggle="modal" data-target="#myModal-{{$id}}">{{$transaksi->tanggal_transaksi}}</td>
-                        <td data-toggle="modal" data-target="#myModal-{{$id}}">{{$transaksi->batas_transaksi}}</td>
-                        <td data-toggle="modal" data-target="#myModal-{{$id}}">{{$transaksi->status}}</td>
-                        <td>
+                    <tr id="table-tr" data-url="{{route('admin.detail',$transaksi->id)}}">
+                        <td>{{$transaksi->tanggal_transaksi}}</td>
+                        <td>{{$transaksi->batas_transaksi}}</td>
+                        <td>{{$transaksi->status}}</td>
+                        <!-- <td>
                             <a href="{{route('admin.detail',$transaksi->id)}}">
                                 <button class="btn btn-default">Cek Detail</button>
                             </a>
-                            <!-- @if ($transaksi->status==='unverified')
+                            @if ($transaksi->status==='unverified')
                                     
                             <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#action-{{$id}}">Cek Bukti</button>
                             
-                            @endif -->
-                        </td>
+                            @endif
+                        </td> -->
                     </tr>
-                    
-                    <div id="action-{{$id}}" class="modal fade" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <p>Yakin Ingin Mengubah?...</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <form action="{{route('admin.update-seller',$transaksi->id)}}" method="POST">
-                                        @csrf
-                                        @method('put')
-                                        <button type="submit"   class="btn btn-primary" >ya</button>
-                                        <button type="button" class="btn btn-warning" data-dismiss="modal">Tidak</button>    
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 @endforeach
             </tbody>
         </table>
@@ -141,7 +128,11 @@
         $('#example').DataTable();
 
     });
-        
+    $(function () {
+        $("#example").on("click", "tr[data-url]", function () {
+        window.location = $(this).data("url");
+        });
+    });
 
 </script>
 
