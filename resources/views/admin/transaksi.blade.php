@@ -106,15 +106,15 @@
                             <a href="{{route('admin.detail',$transaksi->id)}}">
                                 <button class="btn btn-default">Cek Detail</button>
                             </a>
-                            <!-- @if ($transaksi->status==='unverified')
+                            {{--  @if ($transaksi->status==='unverified')
                                     
                             <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#action-{{$id}}">Cek Bukti</button>
                             
-                            @endif -->
+                            @endif  --}}
                         </td>
                     </tr>
                     
-                    <div id="action-{{$id}}" class="modal fade" role="dialog">
+                    {{--  <div id="action-{{$id}}" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-body">
@@ -130,7 +130,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>  --}}
                 @endforeach
             </tbody>
         </table>

@@ -53,9 +53,13 @@ class AdminGifutoController extends Controller
         $simpan = transaksi::find($id);
         $tanggal = Carbon::now();
         $simpan->timestamps = false;
-        if($simpan->status==='unverified')
+        if($simpan->status==='waiting_for_verif')
         {
-            $simpan->status = 'success';
+            $simpan->status = 'verified';
+        }
+        elseif ($simpan->status==='verified') 
+        {
+            $simpan->status = 'delivered';
         }
         // else
         // {
