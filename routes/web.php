@@ -94,4 +94,4 @@ Route::get('admin/transaksi','AdminGifutoController@transaksi')->name('admin.tra
 Route::get('admin/transaksi/detail/{id}','AdminGifutoController@detail')->name('admin.detail');
 
 Route::put('admin/status-seller/{id}','AdminGifutoController@update')->name('admin.update-status');
-Route::put('admin/transaksi/{id}','AdminGifutoController@status')->name('admin.update-seller');
+Route::put('admin/transaksi/detail/{id}/update','AdminGifutoController@status')->name('admin.update-seller');

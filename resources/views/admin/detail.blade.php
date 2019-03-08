@@ -10,7 +10,7 @@
             </div>
             <div class="flex-grow-1 bg-white p-4">
                 <p class="text-uppercase text-secondary mb-0">Tanggal Transaksi</p>
-                <h3>{{$transaksis->tanggal_transaksi}}</h3>
+                <h4>{{$transaksis->tanggal_transaksi}}</h4>
             </div>
         </div>
     </div>
@@ -25,14 +25,28 @@
             </div>
             <div class="flex-grow-1 bg-white p-4">
                 <p class="text-uppercase text-secondary mb-0">Batas Transaksi</p>
-                <h3>{{$transaksis->batas_transaksi}}</h3>
+                <h4>{{$transaksis->batas_transaksi}}</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md">
+        <div class="d-flex border">
+            <div class="bg-success text-light p-4">
+                <div class="d-flex align-items-center h-100">
+                    <i class="fa fa-3x fa-fw fa-info"></i>
+                </div>
+            </div>
+            <div class="flex-grow-1 bg-white p-4">
+                <p class="text-uppercase text-secondary mb-0">Status Transaksi</p>
+                <h3>{{$transaksis->status}}</h3>
             </div>
         </div>
     </div>
 </div>         
 
-<!-- PERTAMA -->
-<!-- <div class="card mb-4">
+<!-- RAME -->
+<div class="card mb-4">
     <div class="card-body">
         <h4>Kado:</h4><br>
         <table id="example" class="table table-hover" cellspacing="0" width="100%">
@@ -115,13 +129,37 @@
     <div class="card-body">
         <h4>Bukti Transfer:</h4><br>
         <div style="display: flex; justify-content: center;">
-            <img src="{{ asset('images/bukti/' . $transaksis->bukti_transaksi) }}" align="middle" />
+            <img src="{{ asset('images/bukti/' . $transaksis->bukti_transaksi) }}" />
+        </div>
+        <br>
+        <div class="row float-right">
+            @if ($transaksis->status=="waiting_for_verif")
+                <button type="button" class="btn btn-deafult" data-toggle="modal" data-target="#myModal">Terima</button>
+            @endif
         </div>
     </div>  
-</div> -->
+</div>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Yakin Ingin Menerima Bukti?</p>
+            </div>
+            <div class="modal-footer">
+                <form action="{{route('admin.update-seller',$transaksis->id)}}" method="POST">
+                    @csrf
+                    @method('put')
+                    <button type="submit"   class="btn btn-success" >ya</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- TAB -->
-<ul class="nav nav-tabs nav-fill mb-3" id="myTab" role="tablist">
+{{-- <ul class="nav nav-tabs nav-fill mb-3" id="myTab" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" id="kado-tab" data-toggle="tab" href="#kado" role="tab" aria-controls="kado" aria-selected="true">Kado</a>
     </li>
@@ -231,7 +269,7 @@
             </div>  
         </div>
     </div>
-</div>
+</div> --}}
 <!-- <script>
     $(document).ready(function () {
         $('#example').DataTable();

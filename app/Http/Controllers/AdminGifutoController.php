@@ -52,11 +52,10 @@ class AdminGifutoController extends Controller
     public function status(Request $request,$id)
     {   
         $simpan = transaksi::find($id);
-        $tanggal = Carbon::now();
         $simpan->timestamps = false;
-        if($simpan->status==='unverified')
+        if($simpan->status==='waiting_for_verif')
         {
-            $simpan->status = 'success';
+            $simpan->status = 'verified';
         }
         // else
         // {
@@ -64,7 +63,7 @@ class AdminGifutoController extends Controller
         // }
         $simpan->save();
 
-        return redirect('/admin/transaksi');
+        return redirect('/admin/transaksi/detail/'.$id);
     }
     // public function expired(Request $request,$id)
     // {   
