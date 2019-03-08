@@ -24,10 +24,9 @@ class AdminGifutoController extends Controller
     //cory
     public function status_seller()
     {
-        $jumlah = seller::all();
-        $seller = seller::paginate(5);
+        $seller = seller::all();
 
-        return view('admin.status_seller')->with(compact('jumlah','seller'));
+        return view('admin.status_seller')->with('seller',$seller);
     }
     public function edit($id)
     {   
@@ -56,6 +55,10 @@ class AdminGifutoController extends Controller
         if($simpan->status==='waiting_for_verif')
         {
             $simpan->status = 'verified';
+        }
+        elseif ($simpan->status==='verified') 
+        {
+            $simpan->status = 'delivered';
         }
         // else
         // {

@@ -43,7 +43,18 @@
             </div>
         </div>
     </div>
-</div>         
+<!-- </div>
+<div class="row mb-4"> -->
+    <div class="col-md">
+        <div class="d-flex border">
+            <div class="flex-grow-1 bg-white p-4">
+                <p class="text-uppercase text-secondary mb-0">Status :</p>
+                <hr>
+                <h4>{{$transaksis->status}}</h4>
+            </div>
+        </div>
+    </div>
+</div>                  
 
 <!-- RAME -->
 <div class="card mb-4">
@@ -193,7 +204,7 @@
                                 <td>{{$detail->jumlah_brg}}</td>
                                 <td>{{$detail->harga_kado}}</td>
                             </tr>
-                        @endforeach
+                        {{--  @endforeach  --}}
                         <tr class="table-active">
                             <th>Total</th>
                             <td>{{$transaksis->total_belanja}}</td>
@@ -218,13 +229,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($details as $detail)
+                        {{--  @foreach($details as $detail)  --}}
                             <tr>
                                 <td>{{$detail->nama_toko}}</td>
                                 <td>{{$detail->nama_pemilik}}</td>
                                 <td>{{$detail->email}}</td>
                             </tr>
-                        @endforeach
+                        {{--  @endforeach  --}}
                     </tbody>
                 </table>
             </div>  
@@ -245,7 +256,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($details as $detail)
+                        {{--  @foreach($details as $detail)  --}}
                             <tr>
                                 <td>{{$detail->nama_depan}}</td>
                                 <td>{{$detail->alamat_pengiriman}}</td>
@@ -258,7 +269,6 @@
             </div>  
         </div>
     </div>
-
     <div class="tab-pane fade" id="bukti" role="tabpanel" aria-labelledby="bukti">
         <div class="card mb-4">
             <div class="card-body">
@@ -266,10 +276,32 @@
                 <div style="display: flex; justify-content: center;">
                     <img src="{{ asset('images/bukti/' . $transaksis->bukti_transaksi) }}" align="middle" />
                 </div>
+                <hr>
+                <div>
+                    <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ubah</button>
+                </div>
             </div>  
         </div>
     </div>
 </div> --}}
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Confirm</p>
+            </div>
+            <div class="modal-footer">
+                <form action="{{route('admin.update-seller',$transaksis->id)}}" method="POST">
+                    @csrf
+                    @method('put')
+                    <button type="submit"   class="btn btn-primary" >Ya</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Tidak</button>    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- <script>
     $(document).ready(function () {
         $('#example').DataTable();
