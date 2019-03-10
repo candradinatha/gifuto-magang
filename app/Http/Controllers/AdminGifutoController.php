@@ -91,13 +91,20 @@ class AdminGifutoController extends Controller
     public function detail(Request $request,$id)
     {
         $transaksis = transaksi::find($id);
-        $details = DB::table('detail_transaksis')
-        ->where('detail_transaksis.id_transaksi',$transaksis->id)
-        ->join('kados', 'detail_transaksis.id_kado', '=', 'kados.id')
-        ->join('sellers', 'detail_transaksis.id_seller', '=', 'sellers.id')
-        ->join('transaksis', 'detail_transaksis.id_transaksi', '=', 'transaksis.id')
+        
+        $pengirimans = DB::table('transaksis')
+        ->where('transaksis.id',$id)
         ->join('users', 'transaksis.id_user', '=', 'users.id')
         ->join('kurir_pengirimans', 'transaksis.id_kurir', '=', 'kurir_pengirimans.id')
+        ->select('transaksis.*',
+                 'users.nama_depan',
+                 'kurir_pengirimans.nama_kurir_pengiriman')      
+        ->get();
+        
+        $details = DB::table('detail_transaksis')
+        ->where('detail_transaksis.id_transaksi',$id)
+        ->join('kados', 'detail_transaksis.id_kado', '=', 'kados.id')
+        ->join('sellers', 'detail_transaksis.id_seller', '=', 'sellers.id')
         ->select('detail_transaksis.jumlah_brg',
                  'detail_transaksis.catatan_penjual',
                  'detail_transaksis.id_transaksi',
@@ -105,14 +112,10 @@ class AdminGifutoController extends Controller
                  'kados.harga_kado',
                  'sellers.nama_toko',
                  'sellers.nama_pemilik',
-                 'sellers.email',
-                 'users.nama_depan',
-                 'kurir_pengirimans.nama_kurir_pengiriman',
-                 'transaksis.alamat_pengiriman',
-                 'transaksis.total_ongkos_kirim')
+                 'sellers.email')
         ->get();
         //return view('admin.transaksi')->with('transaksis',$transaksis);
-        return view('admin.detail')->with(compact('details','transaksis'));
+        return view('admin.detail')->with(compact('details','transaksis','pengirimans'));
         
     }
 }

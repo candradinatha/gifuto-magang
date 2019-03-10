@@ -14,8 +14,6 @@
             </div>
         </div>
     </div>
-<!-- </div>
-<div class="row mb-4"> -->
     <div class="col-md">
         <div class="d-flex border">
             <div class="bg-danger text-light p-4">
@@ -43,20 +41,9 @@
             </div>
         </div>
     </div>
-<!-- </div>
-<div class="row mb-4"> -->
-    <div class="col-md">
-        <div class="d-flex border">
-            <div class="flex-grow-1 bg-white p-4">
-                <p class="text-uppercase text-secondary mb-0">Status :</p>
-                <hr>
-                <h4>{{$transaksis->status}}</h4>
-            </div>
-        </div>
-    </div>
-</div>                  
+</div>         
 
-<!-- RAME -->
+<!-- PERTAMA -->
 <div class="card mb-4">
     <div class="card-body">
         <h4>Kado:</h4><br>
@@ -85,13 +72,13 @@
         </table>
     </div>
 </div>
-
 <div class="card mb-4">
     <div class="card-body">
         <h4>Seller:</h4><br>
         <table id="example1" class="table table-hover" cellspacing="0" width="100%">
             <thead>
                 <tr>
+                    <th>Nama Kado</th>
                     <th>Nama Toko</th>
                     <th>Nama Pemilik</th>
                     <th>E-mail</th>
@@ -100,6 +87,7 @@
             <tbody>
                 @foreach($details as $detail)
                     <tr>
+                        <td>{{$detail->nama_kado}}</td>
                         <td>{{$detail->nama_toko}}</td>
                         <td>{{$detail->nama_pemilik}}</td>
                         <td>{{$detail->email}}</td>
@@ -109,7 +97,6 @@
         </table>
     </div>  
 </div>
-
 <div class="card mb-4">
     <div class="card-body">
         <h4>Pengiriman:</h4><br>
@@ -123,50 +110,34 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($details as $detail)
+                @foreach($pengirimans as $pengiriman)
                     <tr>
-                        <td>{{$detail->nama_depan}}</td>
-                        <td>{{$detail->alamat_pengiriman}}</td>
-                        <td>{{$detail->total_ongkos_kirim}}</td>
-                        <td>{{$detail->nama_kurir_pengiriman}}</td>
+                        <td>{{$pengiriman->nama_depan}}</td>
+                        <td>{{$pengiriman->alamat_pengiriman}}</td>
+                        <td>{{$pengiriman->total_ongkos_kirim}}</td>
+                        <td>{{$pengiriman->nama_kurir_pengiriman}}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>  
 </div>
-
 <div class="card mb-4">
     <div class="card-body">
         <h4>Bukti Transfer:</h4><br>
-        <div style="display: flex; justify-content: center;">
-            <img src="{{ asset('images/bukti/' . $transaksis->bukti_transaksi) }}" />
-        </div>
-        <br>
-        <div class="row float-right">
-            @if ($transaksis->status=="waiting_for_verif")
-                <button type="button" class="btn btn-deafult" data-toggle="modal" data-target="#myModal">Terima</button>
+        @if (empty($transaksis->bukti_transaksi))
+            Belum ada bukti    
+        @else
+            <div style="display: flex; justify-content: center;">
+                <img src="{{ asset('images/bukti/' . $transaksis->bukti_transaksi) }}" align="middle" />
+            </div><br>
+            @if ($transaksis->status==="waiting_for_verif")
+                <div style="float: right; margin: 0 10px 0 0;">
+                    <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#myModal">Terima</button>
+                </div>
             @endif
-        </div>
+        @endif
     </div>  
-</div>
-
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <p>Yakin Ingin Menerima Bukti?</p>
-            </div>
-            <div class="modal-footer">
-                <form action="{{route('admin.update-seller',$transaksis->id)}}" method="POST">
-                    @csrf
-                    @method('put')
-                    <button type="submit"   class="btn btn-success" >ya</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>    
-                </form>
-            </div>
-        </div>
-    </div>
 </div>
 
 <!-- TAB -->
@@ -204,7 +175,7 @@
                                 <td>{{$detail->jumlah_brg}}</td>
                                 <td>{{$detail->harga_kado}}</td>
                             </tr>
-                        {{--  @endforeach  --}}
+                        @endforeach
                         <tr class="table-active">
                             <th>Total</th>
                             <td>{{$transaksis->total_belanja}}</td>
@@ -229,13 +200,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{--  @foreach($details as $detail)  --}}
+                        @foreach($details as $detail)
                             <tr>
                                 <td>{{$detail->nama_toko}}</td>
                                 <td>{{$detail->nama_pemilik}}</td>
                                 <td>{{$detail->email}}</td>
                             </tr>
-                        {{--  @endforeach  --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>  
@@ -256,7 +227,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{--  @foreach($details as $detail)  --}}
+                        @foreach($details as $detail)
                             <tr>
                                 <td>{{$detail->nama_depan}}</td>
                                 <td>{{$detail->alamat_pengiriman}}</td>
@@ -269,6 +240,7 @@
             </div>  
         </div>
     </div>
+
     <div class="tab-pane fade" id="bukti" role="tabpanel" aria-labelledby="bukti">
         <div class="card mb-4">
             <div class="card-body">
@@ -276,32 +248,29 @@
                 <div style="display: flex; justify-content: center;">
                     <img src="{{ asset('images/bukti/' . $transaksis->bukti_transaksi) }}" align="middle" />
                 </div>
-                <hr>
-                <div>
-                    <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ubah</button>
-                </div>
             </div>  
         </div>
     </div>
 </div> --}}
-</div>
+
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <p>Confirm</p>
+                <p>Yakin Ingin Menerima Bukti?</p>
             </div>
             <div class="modal-footer">
                 <form action="{{route('admin.update-seller',$transaksis->id)}}" method="POST">
                     @csrf
                     @method('put')
-                    <button type="submit"   class="btn btn-primary" >Ya</button>
-                    <button type="button" class="btn btn-warning" data-dismiss="modal">Tidak</button>    
+                    <button type="submit" class="btn btn-success" >Ya</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>    
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 <!-- <script>
     $(document).ready(function () {
         $('#example').DataTable();
@@ -309,7 +278,5 @@
         $('#example2').DataTable();
         
     });
-
-
 </script> -->
 @endsection

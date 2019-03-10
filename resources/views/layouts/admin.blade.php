@@ -15,13 +15,13 @@
     <script src="{{asset('js/datatables.min.js')}}"></script>
 
 
-    <title>BootAdmin</title>
+    <title>Admin</title>
 </head>
 <body class="bg-light">
 
 <nav class="navbar navbar-expand navbar-dark bg-primary">
     <a class="sidebar-toggle mr-3" href="#"><i class="fa fa-bars"></i></a>
-    <a class="navbar-brand" href="#">BootAdmin</a>
+    <a class="navbar-brand" href="#">Admin</a>
 
     <div class="navbar-collapse collapse">
         <ul class="navbar-nav ml-auto">
@@ -43,7 +43,7 @@
         <ul class="list-unstyled">
             <li><a href="/admin"><i class="fa fa-fw fa-link"></i> Home</a></li>
             <li><a href="/admin/status-seller"><i class="fa fa-fw fa-link"></i> Status Seller</a></li>
-            <li><a href="/admin/transaksi"><i class="fa fa-fw fa-link"></i> transaksi</a></li>
+            <li><a href="/admin/transaksi"><i class="fa fa-fw fa-link"></i> Transaksi</a></li>
         </ul>
     </div>
 
