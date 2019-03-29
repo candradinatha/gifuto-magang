@@ -108,7 +108,7 @@
         $('#contoh').DataTable();
     });
 </script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="{{asset('js/loader.js')}}"></script>
 <script type="text/javascript">
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart3);
@@ -119,7 +119,7 @@
 
         var options = {
             title: 'Tahun 2019',
-            hAxis: {title: 'Bulan',  titleTextStyle: {color: '#333'}},
+            hAxis: {title: 'Bulan',  titleTextStyle: {color: '#3333'}},
             vAxis: {minValue: 0}
         };
 
