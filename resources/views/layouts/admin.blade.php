@@ -13,7 +13,9 @@
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('js/bootadmin.min.js')}}"></script>
     <script src="{{asset('js/datatables.min.js')}}"></script>
-
+    <script src="{{asset('js/moment.min.js')}}"></script>
+    <script src="{{asset('js/fullcalendar.min.js')}}"></script>
+    
 
     <title>Admin</title>
 </head>

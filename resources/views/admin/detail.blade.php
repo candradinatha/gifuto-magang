@@ -51,22 +51,24 @@
             <thead>
                 <tr>
                     <th>Nama Kado</th>
-                    <th>Jumlah Barang</th>
                     <th>Harga</th>
+                    <th>Jumlah Barang</th>
+                    <th>Harga Total</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($details as $detail)
                     <tr>
                         <td>{{$detail->nama_kado}}</td>
-                        <td>{{$detail->jumlah_brg}}</td>
                         <td>{{$detail->harga_kado}}</td>
+                        <td>{{$detail->jumlah_brg}}</td>
+                        <td>{{$detail->harga_kado * $detail->jumlah_brg}}</td>
                     </tr>
                 @endforeach
                 <tr class="table-active">
-                    <th>Total</th>
-                    <td>{{$transaksis->total_belanja}}</td>
-                    <td>{{$transaksis->total_transaksi}}</td>
+                    <th colspan="2">Total</th>
+                    <th>{{$transaksis->total_belanja}}</th>
+                    <th>{{$transaksis->total_transaksi}}</th>
                 </tr>
             </tbody>
         </table>
@@ -135,6 +137,10 @@
                 <div style="float: right; margin: 0 10px 0 0;">
                     <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#myModal">Terima</button>
                 </div>
+            @else
+            <div style="float: right; margin: 0 10px 0 0;">
+                <button type="button" class="btn btn-lg btn-primary" disabled>Terima</button>
+            </div>
             @endif
         @endif
     </div>  

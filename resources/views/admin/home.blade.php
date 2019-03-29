@@ -31,6 +31,16 @@
     </div>
 </div>  
 
+{{-- <div class="card mb-4"> --}}
+    {{-- <div class="card-header bg-white font-weight-bold">
+        Area
+    </div> --}}
+    {{-- <div class="card-body"> --}}
+        <div id="chart_div_3" style="width: 100%; height: 500px; padding-left: -25%;"></div>
+    {{-- </div> --}}
+{{-- </div> --}}
+
+
 <div class="nav nav-tabs my-info" id="nav-tab" role="tablist">
     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
         aria-controls="nav-home" aria-selected="true">Jumlah Seller</a>
@@ -97,6 +107,25 @@
     $(document).ready(function () {
         $('#contoh').DataTable();
     });
+</script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart3);
+    function drawChart3() {
+        var data = google.visualization.arrayToDataTable(
+            {!! json_encode($array) !!}
+        );
+
+        var options = {
+            title: 'Tahun 2019',
+            hAxis: {title: 'Bulan',  titleTextStyle: {color: '#333'}},
+            vAxis: {minValue: 0}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div_3'));
+        chart.draw(data, options);
+    }
 </script>
 
 @endsection

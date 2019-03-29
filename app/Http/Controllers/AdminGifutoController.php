@@ -16,8 +16,38 @@ class AdminGifutoController extends Controller
         $seller = seller::all();
         $bulan = Carbon::now()->month;
         $transaksi = transaksi::whereMonth('tanggal_transaksi',$bulan)->get();
+        $array =
+            [
+                // ['Bulan', 'Transaksi'],
+                // ['Januari',  transaksi::whereMonth('tanggal_transaksi','1')->count()],
+                // ['Februari',  transaksi::whereMonth('tanggal_transaksi','2')->count()],
+                // ['Maret',  transaksi::whereMonth('tanggal_transaksi','3')->count()],
+                // ['April',  transaksi::whereMonth('tanggal_transaksi','4')->count()],
+                // ['Mei',  transaksi::whereMonth('tanggal_transaksi','5')->count()],
+                // ['Juni',  transaksi::whereMonth('tanggal_transaksi','6')->count()],
+                // ['Juli',  transaksi::whereMonth('tanggal_transaksi','7')->count()],
+                // ['Agustus',  transaksi::whereMonth('tanggal_transaksi','8')->count()],
+                // ['September',  transaksi::whereMonth('tanggal_transaksi','9')->count()],
+                // ['Oktober',  transaksi::whereMonth('tanggal_transaksi','10')->count()],
+                // ['November',  transaksi::whereMonth('tanggal_transaksi','11')->count()],
+                // ['Desember',  transaksi::whereMonth('tanggal_transaksi','12')->count()]
 
-        return view('admin.home')->with(compact('seller', 'transaksi'));
+                ['Bulan', 'Transaksi', 'Seller'],
+                ['Januari',  transaksi::whereMonth('tanggal_transaksi','1')->count(), seller::whereMonth('created_at','1')->count()],
+                ['Februari',  transaksi::whereMonth('tanggal_transaksi','2')->count(), seller::whereMonth('created_at','2')->count()],
+                ['Maret',  transaksi::whereMonth('tanggal_transaksi','3')->count(), seller::whereMonth('created_at','3')->count()],
+                ['April',  transaksi::whereMonth('tanggal_transaksi','4')->count(), seller::whereMonth('created_at','4')->count()],
+                ['Mei',  transaksi::whereMonth('tanggal_transaksi','5')->count(), seller::whereMonth('created_at','5')->count()],
+                ['Juni',  transaksi::whereMonth('tanggal_transaksi','6')->count(), seller::whereMonth('created_at','6')->count()],
+                ['Juli',  transaksi::whereMonth('tanggal_transaksi','7')->count(), seller::whereMonth('created_at','7')->count()],
+                ['Agustus',  transaksi::whereMonth('tanggal_transaksi','8')->count(), seller::whereMonth('created_at','8')->count()],
+                ['September',  transaksi::whereMonth('tanggal_transaksi','9')->count(), seller::whereMonth('created_at','9')->count()],
+                ['Oktober',  transaksi::whereMonth('tanggal_transaksi','10')->count(), seller::whereMonth('created_at','10')->count()],
+                ['November',  transaksi::whereMonth('tanggal_transaksi','11')->count(), seller::whereMonth('created_at','11')->count()],
+                ['Desember',  transaksi::whereMonth('tanggal_transaksi','12')->count(), seller::whereMonth('created_at','12')->count()]
+            ];
+
+        return view('admin.home')->with(compact('seller', 'transaksi','array'));
     }
 
 
