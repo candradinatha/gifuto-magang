@@ -15,36 +15,37 @@ class AdminGifutoController extends Controller
     {
         $seller = seller::all();
         $bulan = Carbon::now()->month;
-        $transaksi = transaksi::whereMonth('tanggal_transaksi',$bulan)->get();
+        $tahun = Carbon::now()->year;
+        $transaksi = transaksi::whereMonth('tanggal_transaksi',$bulan)->whereYear('tanggal_transaksi',$tahun)->get();
         $array =
             [
                 // ['Bulan', 'Transaksi'],
-                // ['Januari',  transaksi::whereMonth('tanggal_transaksi','1')->count()],
-                // ['Februari',  transaksi::whereMonth('tanggal_transaksi','2')->count()],
-                // ['Maret',  transaksi::whereMonth('tanggal_transaksi','3')->count()],
-                // ['April',  transaksi::whereMonth('tanggal_transaksi','4')->count()],
-                // ['Mei',  transaksi::whereMonth('tanggal_transaksi','5')->count()],
-                // ['Juni',  transaksi::whereMonth('tanggal_transaksi','6')->count()],
-                // ['Juli',  transaksi::whereMonth('tanggal_transaksi','7')->count()],
-                // ['Agustus',  transaksi::whereMonth('tanggal_transaksi','8')->count()],
-                // ['September',  transaksi::whereMonth('tanggal_transaksi','9')->count()],
-                // ['Oktober',  transaksi::whereMonth('tanggal_transaksi','10')->count()],
-                // ['November',  transaksi::whereMonth('tanggal_transaksi','11')->count()],
-                // ['Desember',  transaksi::whereMonth('tanggal_transaksi','12')->count()]
+                // ['Januari',  transaksi::whereMonth('tanggal_transaksi','1')->whereYear('tanggal_transaksi',$tahun)->count()],
+                // ['Februari',  transaksi::whereMonth('tanggal_transaksi','2')->whereYear('tanggal_transaksi',$tahun)->count()],
+                // ['Maret',  transaksi::whereMonth('tanggal_transaksi','3')->whereYear('tanggal_transaksi',$tahun)->count()],
+                // ['April',  transaksi::whereMonth('tanggal_transaksi','4')->whereYear('tanggal_transaksi',$tahun)->count()],
+                // ['Mei',  transaksi::whereMonth('tanggal_transaksi','5')->whereYear('tanggal_transaksi',$tahun)->count()],
+                // ['Juni',  transaksi::whereMonth('tanggal_transaksi','6')->whereYear('tanggal_transaksi',$tahun)->count()],
+                // ['Juli',  transaksi::whereMonth('tanggal_transaksi','7')->whereYear('tanggal_transaksi',$tahun)->count()],
+                // ['Agustus',  transaksi::whereMonth('tanggal_transaksi','8')->whereYear('tanggal_transaksi',$tahun)->count()],
+                // ['September',  transaksi::whereMonth('tanggal_transaksi','9')->whereYear('tanggal_transaksi',$tahun)->count()],
+                // ['Oktober',  transaksi::whereMonth('tanggal_transaksi','10')->whereYear('tanggal_transaksi',$tahun)->count()],
+                // ['November',  transaksi::whereMonth('tanggal_transaksi','11')->whereYear('tanggal_transaksi',$tahun)->count()],
+                // ['Desember',  transaksi::whereMonth('tanggal_transaksi','12')->whereYear('tanggal_transaksi',$tahun)->count()]
 
                 ['Bulan', 'Transaksi', 'Seller'],
-                ['Januari',  transaksi::whereMonth('tanggal_transaksi','1')->count(), seller::whereMonth('created_at','1')->count()],
-                ['Februari',  transaksi::whereMonth('tanggal_transaksi','2')->count(), seller::whereMonth('created_at','2')->count()],
-                ['Maret',  transaksi::whereMonth('tanggal_transaksi','3')->count(), seller::whereMonth('created_at','3')->count()],
-                ['April',  transaksi::whereMonth('tanggal_transaksi','4')->count(), seller::whereMonth('created_at','4')->count()],
-                ['Mei',  transaksi::whereMonth('tanggal_transaksi','5')->count(), seller::whereMonth('created_at','5')->count()],
-                ['Juni',  transaksi::whereMonth('tanggal_transaksi','6')->count(), seller::whereMonth('created_at','6')->count()],
-                ['Juli',  transaksi::whereMonth('tanggal_transaksi','7')->count(), seller::whereMonth('created_at','7')->count()],
-                ['Agustus',  transaksi::whereMonth('tanggal_transaksi','8')->count(), seller::whereMonth('created_at','8')->count()],
-                ['September',  transaksi::whereMonth('tanggal_transaksi','9')->count(), seller::whereMonth('created_at','9')->count()],
-                ['Oktober',  transaksi::whereMonth('tanggal_transaksi','10')->count(), seller::whereMonth('created_at','10')->count()],
-                ['November',  transaksi::whereMonth('tanggal_transaksi','11')->count(), seller::whereMonth('created_at','11')->count()],
-                ['Desember',  transaksi::whereMonth('tanggal_transaksi','12')->count(), seller::whereMonth('created_at','12')->count()]
+                ['Januari',  transaksi::whereMonth('tanggal_transaksi','1')->whereYear('tanggal_transaksi',$tahun)->count(), seller::whereMonth('created_at','1')->whereYear('created_at',$tahun)->count()],
+                ['Februari',  transaksi::whereMonth('tanggal_transaksi','2')->whereYear('tanggal_transaksi',$tahun)->count(), seller::whereMonth('created_at','2')->whereYear('created_at',$tahun)->count()],
+                ['Maret',  transaksi::whereMonth('tanggal_transaksi','3')->whereYear('tanggal_transaksi',$tahun)->count(), seller::whereMonth('created_at','3')->whereYear('created_at',$tahun)->count()],
+                ['April',  transaksi::whereMonth('tanggal_transaksi','4')->whereYear('tanggal_transaksi',$tahun)->count(), seller::whereMonth('created_at','4')->whereYear('created_at',$tahun)->count()],
+                ['Mei',  transaksi::whereMonth('tanggal_transaksi','5')->whereYear('tanggal_transaksi',$tahun)->count(), seller::whereMonth('created_at','5')->whereYear('created_at',$tahun)->count()],
+                ['Juni',  transaksi::whereMonth('tanggal_transaksi','6')->whereYear('tanggal_transaksi',$tahun)->count(), seller::whereMonth('created_at','6')->whereYear('created_at',$tahun)->count()],
+                ['Juli',  transaksi::whereMonth('tanggal_transaksi','7')->whereYear('tanggal_transaksi',$tahun)->count(), seller::whereMonth('created_at','7')->whereYear('created_at',$tahun)->count()],
+                ['Agustus',  transaksi::whereMonth('tanggal_transaksi','8')->whereYear('tanggal_transaksi',$tahun)->count(), seller::whereMonth('created_at','8')->whereYear('created_at',$tahun)->count()],
+                ['September',  transaksi::whereMonth('tanggal_transaksi','9')->whereYear('tanggal_transaksi',$tahun)->count(), seller::whereMonth('created_at','9')->whereYear('created_at',$tahun)->count()],
+                ['Oktober',  transaksi::whereMonth('tanggal_transaksi','10')->whereYear('tanggal_transaksi',$tahun)->count(), seller::whereMonth('created_at','10')->whereYear('created_at',$tahun)->count()],
+                ['November',  transaksi::whereMonth('tanggal_transaksi','11')->whereYear('tanggal_transaksi',$tahun)->count(), seller::whereMonth('created_at','11')->whereYear('created_at',$tahun)->count()],
+                ['Desember',  transaksi::whereMonth('tanggal_transaksi','12')->whereYear('tanggal_transaksi',$tahun)->count(), seller::whereMonth('created_at','12')->whereYear('created_at',$tahun)->count()]
             ];
 
         return view('admin.home')->with(compact('seller', 'transaksi','array'));
@@ -58,11 +59,13 @@ class AdminGifutoController extends Controller
 
         return view('admin.status_seller')->with('seller',$seller);
     }
+    
     public function edit($id)
     {   
         $seller = seller::find($id);
         return view('admin.edit')->with('seller', $seller);
     }
+
     public function update(Request $request,$id)
     {   
         $simpan = seller::find($id);
@@ -78,6 +81,7 @@ class AdminGifutoController extends Controller
 
         return redirect('/admin/status-seller');
     }
+
     public function status(Request $request,$id)
     {   
         $simpan = transaksi::find($id);
@@ -98,6 +102,7 @@ class AdminGifutoController extends Controller
 
         return redirect('/admin/transaksi/detail/'.$id);
     }
+
     // public function expired(Request $request,$id)
     // {   
     //     $simpan = transaksi::find($id);
