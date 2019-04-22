@@ -88,6 +88,8 @@ Route::group(['prefix' => 'seller'], function () {
 });
 
 Route::get('/admin','AdminGifutoController@index')->name('admin.index');
+Route::get('admin/status-seller/{id}','AdminGifutoController@detailseller')->name('admin.detailseller');
+
 Route::get('admin/status-seller','AdminGifutoController@status_seller')->name('admin.status_seller');
 Route::get('admin/status-seller/edit/{id}','AdminGifutoController@edit')->name('admin.edit');
 Route::get('admin/transaksi','AdminGifutoController@transaksi')->name('admin.transaksi');
@@ -95,3 +97,6 @@ Route::get('admin/transaksi/detail/{id}','AdminGifutoController@detail')->name('
 
 Route::put('admin/status-seller/{id}','AdminGifutoController@update')->name('admin.update-status');
 Route::put('admin/transaksi/detail/{id}/update','AdminGifutoController@status')->name('admin.update-seller');
+
+Route::get('rating','RatingController@index')->name('rating.index');
+Route::post('rating/upload','RatingController@upload')->name('rating.upload');

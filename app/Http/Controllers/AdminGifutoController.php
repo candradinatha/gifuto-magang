@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\seller;
 use App\transaksi;
+use App\kado;
 use App\detail_transaksi;
 use Carbon\Carbon;
 
@@ -48,9 +49,18 @@ class AdminGifutoController extends Controller
                 ['Desember',  transaksi::whereMonth('tanggal_transaksi','12')->whereYear('tanggal_transaksi',$tahun)->count(), seller::whereMonth('created_at','12')->whereYear('created_at',$tahun)->count()]
             ];
 
-        return view('admin.home')->with(compact('seller', 'transaksi','array'));
+        return view('admin.home')->with(compact('seller', 'transaksi','array','tahun'));
     }
 
+    public function detailseller(Request $request,$id)
+    {
+        $sellers = seller::find($id);
+        
+        $kados = kado::where('id_seller',$id)->get();
+
+        return view('admin.detail_seller')->with(compact('sellers','kados'));
+        
+    }
 
     //cory
     public function status_seller()
@@ -116,10 +126,17 @@ class AdminGifutoController extends Controller
     //     return redirect('/admin/transaksi');
     // }
     
-    public function transaksi()
+    public function transaksi(Request $request)
     {
+        $status = $request->filter;  
         $transaksis = transaksi::all();
-        return view('admin.transaksi')->with('transaksis',$transaksis);
+        if (isset($status) && !empty($status)) {
+            $tabeltransaksis = transaksi::where('status', $status)->get();
+        }
+        else {
+            $tabeltransaksis = transaksi::all();
+        }
+        return view('admin.transaksi')->with(compact('tabeltransaksis','transaksis'));
         
     }
 
@@ -149,7 +166,6 @@ class AdminGifutoController extends Controller
                  'sellers.nama_pemilik',
                  'sellers.email')
         ->get();
-        //return view('admin.transaksi')->with('transaksis',$transaksis);
         return view('admin.detail')->with(compact('details','transaksis','pengirimans'));
         
     }
