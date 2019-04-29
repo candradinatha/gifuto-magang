@@ -8,6 +8,7 @@ use App\seller;
 use App\transaksi;
 use App\kado;
 use App\detail_transaksi;
+use App\foto_barang;
 use Carbon\Carbon;
 
 class AdminGifutoController extends Controller
@@ -20,20 +21,6 @@ class AdminGifutoController extends Controller
         $transaksi = transaksi::whereMonth('tanggal_transaksi',$bulan)->whereYear('tanggal_transaksi',$tahun)->get();
         $array =
             [
-                // ['Bulan', 'Transaksi'],
-                // ['Januari',  transaksi::whereMonth('tanggal_transaksi','1')->whereYear('tanggal_transaksi',$tahun)->count()],
-                // ['Februari',  transaksi::whereMonth('tanggal_transaksi','2')->whereYear('tanggal_transaksi',$tahun)->count()],
-                // ['Maret',  transaksi::whereMonth('tanggal_transaksi','3')->whereYear('tanggal_transaksi',$tahun)->count()],
-                // ['April',  transaksi::whereMonth('tanggal_transaksi','4')->whereYear('tanggal_transaksi',$tahun)->count()],
-                // ['Mei',  transaksi::whereMonth('tanggal_transaksi','5')->whereYear('tanggal_transaksi',$tahun)->count()],
-                // ['Juni',  transaksi::whereMonth('tanggal_transaksi','6')->whereYear('tanggal_transaksi',$tahun)->count()],
-                // ['Juli',  transaksi::whereMonth('tanggal_transaksi','7')->whereYear('tanggal_transaksi',$tahun)->count()],
-                // ['Agustus',  transaksi::whereMonth('tanggal_transaksi','8')->whereYear('tanggal_transaksi',$tahun)->count()],
-                // ['September',  transaksi::whereMonth('tanggal_transaksi','9')->whereYear('tanggal_transaksi',$tahun)->count()],
-                // ['Oktober',  transaksi::whereMonth('tanggal_transaksi','10')->whereYear('tanggal_transaksi',$tahun)->count()],
-                // ['November',  transaksi::whereMonth('tanggal_transaksi','11')->whereYear('tanggal_transaksi',$tahun)->count()],
-                // ['Desember',  transaksi::whereMonth('tanggal_transaksi','12')->whereYear('tanggal_transaksi',$tahun)->count()]
-
                 ['Bulan', 'Transaksi', 'Seller'],
                 ['Januari',  transaksi::whereMonth('tanggal_transaksi','1')->whereYear('tanggal_transaksi',$tahun)->count(), seller::whereMonth('created_at','1')->whereYear('created_at',$tahun)->count()],
                 ['Februari',  transaksi::whereMonth('tanggal_transaksi','2')->whereYear('tanggal_transaksi',$tahun)->count(), seller::whereMonth('created_at','2')->whereYear('created_at',$tahun)->count()],
@@ -52,17 +39,32 @@ class AdminGifutoController extends Controller
         return view('admin.home')->with(compact('seller', 'transaksi','array','tahun'));
     }
 
-    public function detailseller(Request $request,$id)
+    public function detailseller(Request $request,$id_seller)
     {
-        $sellers = seller::find($id);
+        $sellers = seller::find($id_seller);
         
-        $kados = kado::where('id_seller',$id)->get();
+        $kados = DB::table('kados')
+        ->where('kados.id_seller',$id_seller)
+        ->join('foto_barangs', 'foto_barangs.id_kado', '=', 'kados.id')
+        ->select('kados.*',
+                 'foto_barangs.url')      
+        ->groupBy('kados.id')
+                 ->get();
 
+        // dd($kados);
         return view('admin.detail_seller')->with(compact('sellers','kados'));
         
     }
 
-    //cory
+    public function detailkado(Request  $request,$id_seller,$id_kado)
+    {
+        $seller = seller::find($id_seller);
+        $kado = kado::find($id_kado);
+        $foto_barangs = foto_barang::where('id_kado',$id_kado)->get();
+        // dd($seller);
+        return view('admin.detail_kado')->with(compact('kado','foto_barangs','seller'));
+    }
+
     public function status_seller()
     {
         $seller = seller::all();
@@ -89,7 +91,7 @@ class AdminGifutoController extends Controller
         }
         $simpan->save();
 
-        return redirect('/admin/status-seller');
+        return redirect('/admin');
     }
 
     public function status(Request $request,$id)
@@ -112,19 +114,6 @@ class AdminGifutoController extends Controller
 
         return redirect('/admin/transaksi/detail/'.$id);
     }
-
-    // public function expired(Request $request,$id)
-    // {   
-    //     $simpan = transaksi::find($id);
-    //     if($simpan->status==='unverified')
-    //     {
-    //         $simpan->status = 'expired';
-    //     }
-    //     $simpan->timestamps = false;
-    //     $simpan->save();
-
-    //     return redirect('/admin/transaksi');
-    // }
     
     public function transaksi(Request $request)
     {

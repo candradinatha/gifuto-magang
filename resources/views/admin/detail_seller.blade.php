@@ -50,6 +50,7 @@
         <table id="example" class="table table-hover" >
             <thead>
                 <tr>
+                    <th width="10%">Gambar</th>
                     <th>Nama Kado</th>
                     <th>Harga</th>
                     <th>Stok</th>
@@ -58,7 +59,8 @@
             </thead>
             <tbody>
                 @foreach($kados as $kado)
-                    <tr>
+                    <tr id="table-tr" data-url="{{route('admin.detailkado',[$sellers->id,$kado->id])}}">
+                        <td><img src="{{ asset('images/kados/' . $kado->url) }}" class="w-100" /></td>
                         <td>{{$kado->nama_kado}}</td>
                         <td>{{$kado->harga_kado}}</td>
                         <td>{{$kado->stok}}</td>
@@ -73,6 +75,9 @@
 <script>
     $(document).ready(function () {
         $('#example').DataTable();
+    });
+    $("#example").on("click", "tr[data-url]", function () {
+        window.location = $(this).data("url");
     });
 </script>
 @endsection

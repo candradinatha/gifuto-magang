@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{{asset('css/fontawesome-all.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/bootadmin.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/datatables.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/rateit.css')}}">
+    
 
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
@@ -15,6 +17,7 @@
     <script src="{{asset('js/datatables.min.js')}}"></script>
     <script src="{{asset('js/moment.min.js')}}"></script>
     <script src="{{asset('js/fullcalendar.min.js')}}"></script>
+    <script src="{{asset('js/jquery.rateit.js')}}"></script>
 
     <title>Seller</title>
 </head>

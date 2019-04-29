@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="{{ asset('img//index/favicon.png')}} " rel="icon">
 
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/fontawesome-all.min.css')}}">
@@ -17,7 +18,7 @@
     <script src="{{asset('js/fullcalendar.min.js')}}"></script>
     
 
-    <title>Admin</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 <body class="bg-light">
 
